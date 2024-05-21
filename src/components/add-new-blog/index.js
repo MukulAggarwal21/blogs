@@ -11,12 +11,13 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
+
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useState } from "react";
 
 
-function AddNewBlog({ openBlogDialog, setOpenBlogDialog, loading, setLoading, blogFormData, setBlogFormData }) {
+function AddNewBlog({ openBlogDialog, setOpenBlogDialog, loading, blogFormData, setBlogFormData , handleSaveBlogData}) {
 
 
     return (
@@ -24,7 +25,10 @@ function AddNewBlog({ openBlogDialog, setOpenBlogDialog, loading, setLoading, bl
             <div>
                 <Button onClick={() => setOpenBlogDialog(true)} >Add New Blog</Button>
             </div>
-            <Dialog open={openBlogDialog} onOpenChange={setOpenBlogDialog}>
+            <Dialog open={openBlogDialog} onOpenChange={()=>{
+                setOpenBlogDialog(faslse)
+                setBlogFormData(initialBlogFormData)
+            }}>
                 <DialogTrigger asChild>
                     <Button variant="outline ">Edit Profile</Button>
                 </DialogTrigger>
@@ -52,7 +56,7 @@ function AddNewBlog({ openBlogDialog, setOpenBlogDialog, loading, setLoading, bl
                         </div>
                         <div className="grid grid-cols-4 items-center gap-4">
                             <Label htmlFor="username" className="text-right">
-                                Descriptiojn
+                                Description
                             </Label>
                             <Input
                                 name="description"
@@ -67,7 +71,12 @@ function AddNewBlog({ openBlogDialog, setOpenBlogDialog, loading, setLoading, bl
                         </div>
                     </div>
                     <DialogFooter>
-                        <Button type="button">Save changes</Button>
+                        <Button onClick={handleSaveBlogData} type="button">
+                        {
+                            loading ? 'Saving Changes' : 'Save Changes'
+                        }
+                        Save changes
+                        </Button>
                     </DialogFooter>
                 </DialogContent>
             </Dialog>

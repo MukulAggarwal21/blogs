@@ -1,6 +1,9 @@
 import connecToDB from "@/database";
 import Blog from "@/models/blog";
 import { NextResponse } from "next/server";
+// import * as Joi from 'joi';
+import Joi from "joi"
+
 
 const AddNewBlog = Joi.object({
     title: Joi.string().required(),
@@ -16,7 +19,8 @@ export async function POST(req) {
         const { title, description } = extractBlogData;
 
         const { error } = AddNewBlog.validate({
-            title, description
+            title, 
+            description,
         })
 
         if (error) {
