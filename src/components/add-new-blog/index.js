@@ -17,7 +17,7 @@ import { Label } from "@/components/ui/label"
 import { useState } from "react";
 
 
-function AddNewBlog({ openBlogDialog, setOpenBlogDialog, loading, blogFormData, setBlogFormData , handleSaveBlogData}) {
+function AddNewBlog({ openBlogDialog, setOpenBlogDialog, loading, blogFormData, setBlogFormData, handleSaveBlogData }) {
 
 
     return (
@@ -25,13 +25,17 @@ function AddNewBlog({ openBlogDialog, setOpenBlogDialog, loading, blogFormData, 
             <div>
                 <Button onClick={() => setOpenBlogDialog(true)} >Add New Blog</Button>
             </div>
-            <Dialog open={openBlogDialog} onOpenChange={()=>{
-                setOpenBlogDialog(faslse)
-                setBlogFormData(initialBlogFormData)
+            <Dialog open={openBlogDialog} onOpenChange={() => {
+                setOpenBlogDialog(false)
+                setBlogFormData({
+                    title: ' ',
+                    description: ' '
+                })
             }}>
                 <DialogTrigger asChild>
                     <Button variant="outline ">Edit Profile</Button>
                 </DialogTrigger>
+
                 <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>
                         <DialogTitle>Add New Blog</DialogTitle>
@@ -72,10 +76,9 @@ function AddNewBlog({ openBlogDialog, setOpenBlogDialog, loading, blogFormData, 
                     </div>
                     <DialogFooter>
                         <Button onClick={handleSaveBlogData} type="button">
-                        {
-                            loading ? 'Saving Changes' : 'Save Changes'
-                        }
-                        Save changes
+                            {
+                                loading ? 'Saving Changes' : 'Save Changes'
+                            }
                         </Button>
                     </DialogFooter>
                 </DialogContent>
