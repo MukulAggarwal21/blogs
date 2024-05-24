@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import {
     Dialog,
@@ -24,6 +24,8 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import AddNewBlog from "../add-new-blog";
+import { Button } from '../ui/button';
+import { useRouter } from 'next/navigation';
 
 function BlogOverview({blogList}) {
 
@@ -36,7 +38,14 @@ function BlogOverview({blogList}) {
     const [loading, setLoading] = useState(false);
     const [blogFormData, setBlogFormData] = useState(initialBlogFormData)
 
-    console.log(blogFormData);
+    //to refresh page
+    
+    const router = useRouter();
+    useEffect(()=>{
+     router.refresh();
+    }, [])
+
+        console.log(blogFormData);
 
     async function handleSaveBlogData() {
         try {
@@ -50,6 +59,7 @@ function BlogOverview({blogList}) {
                 setBlogFormData(initialBlogFormData)
                 setOpenBlogDialog(false)
                 setLoading(false)
+                router.refresh()
             }
             console.log(result);
 
@@ -72,13 +82,19 @@ function BlogOverview({blogList}) {
                 handleSaveBlogData={handleSaveBlogData}
             />
 
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-5 '>
+            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6 '>
                 {
                     blogList && blogList.length>0? blogList.map(blogItem =>
                             <Card>
                                 <CardContent>
                                     <CardTitle>{blogItem?.title}</CardTitle>
                                     <CardDescription>{blogItem?.description}</CardDescription>
+                                   
+                                   <div className='mt-5 flex gap-5 items-center'>
+                                   <Button>Edit</Button>
+                                   <Button>Delete </Button>
+
+                                   </div>
                                    
                                 </CardContent>
                             </Card>
