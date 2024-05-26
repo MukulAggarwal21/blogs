@@ -1,4 +1,4 @@
-import connecToDB from "@/database";
+import connectToDB from "@/database";
 import Blog from "@/models/blog";
 import { NextResponse } from "next/server";
 // import * as Joi from 'joi';
@@ -8,12 +8,12 @@ import Joi from "joi"
 const AddNewBlog = Joi.object({
     title: Joi.string().required(),
     description: Joi.string().required(),
-})
+});
 
 
 export async function POST(req) {
     try {
-        await connecToDB();
+        await connectToDB();
 
         const extractBlogData = await req.json();
         const { title, description } = extractBlogData;

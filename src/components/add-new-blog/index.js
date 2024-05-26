@@ -17,7 +17,7 @@ import { Label } from "@/components/ui/label"
 import { useState } from "react";
 
 
-function AddNewBlog({ openBlogDialog, setOpenBlogDialog, loading, blogFormData, setBlogFormData, handleSaveBlogData }) {
+function AddNewBlog({ openBlogDialog, setOpenBlogDialog, loading, blogFormData, setBlogFormData, handleSaveBlogData , currentEditedBlogID , setCurrentEditedBlogId}) {
 
 
     return (
@@ -30,15 +30,13 @@ function AddNewBlog({ openBlogDialog, setOpenBlogDialog, loading, blogFormData, 
                 setBlogFormData({
                     title: ' ',
                     description: ' '
-                })
+                });
+                setCurrentEditedBlogId(null);
             }}>
-                <DialogTrigger asChild>
-                    <Button variant="outline ">Edit Profile</Button>
-                </DialogTrigger>
-
+              
                 <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>
-                        <DialogTitle>Add New Blog</DialogTitle>
+                        <DialogTitle>{ currentEditedBlogID ? 'Edit Blog' : ' Add New Blog'}</DialogTitle>
 
                     </DialogHeader>
                     <div className="grid gap-4 py-4">

@@ -1,10 +1,10 @@
 import Blog from "@/models/blog";
 import { NextResponse } from "next/server";
-import connecToDB from "@/database";
+import connectToDB from "@/database";
 
 export async function GET(){
     try {
-        await connecToDB();
+        await connectToDB();
         const extractAllBlogsFromDataBase = await Blog.find({});
 
         if(extractAllBlogsFromDataBase) {
