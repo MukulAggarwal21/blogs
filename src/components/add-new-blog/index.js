@@ -19,7 +19,6 @@ import { useState } from "react";
 
 function AddNewBlog({ openBlogDialog, setOpenBlogDialog, loading, blogFormData, setBlogFormData, handleSaveBlogData , currentEditedBlogID , setCurrentEditedBlogId}) {
 
-
     return (
         <>
             <div>
@@ -32,6 +31,7 @@ function AddNewBlog({ openBlogDialog, setOpenBlogDialog, loading, blogFormData, 
                     description: ' '
                 });
                 setCurrentEditedBlogId(null);
+
             }}>
               
                 <DialogContent className="sm:max-w-[425px]">

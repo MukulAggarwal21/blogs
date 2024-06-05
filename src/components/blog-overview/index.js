@@ -1,7 +1,5 @@
 "use client"
-
 import { useEffect, useState } from 'react';
-
 import {
     Dialog,
     DialogContent,
@@ -24,18 +22,17 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import AddNewBlog from "../add-new-blog";
-// import DeleteBlog from "../"
 import { Button } from '../ui/button';
 import { useRouter } from 'next/navigation';
 
 function BlogOverview({ blogList }) {
 
-    const [openBlogDialog, setOpenBlogDialog] = useState(false);
-    const initialBlogFormData = {
+  const initialBlogFormData = {
         title: ' ',
         description: ' '
     }
 
+    const [openBlogDialog, setOpenBlogDialog] = useState(false);
     const [loading, setLoading] = useState(false);
     const [blogFormData, setBlogFormData] = useState(initialBlogFormData)
     const [currentEditedBlogID, setCurrentEditedBlogId] = useState(null);
